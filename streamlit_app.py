@@ -1,7 +1,9 @@
 import streamlit as st
 
 st.set_page_config(page_title='Home page')
+
 st.title("📊 Holis Interview - Data Visualization")
+
 st.write(
     "Welcome to this user-friendly data visualisation dashboard using the Base Impacts subset from the Empreinte database."," \n ",
     "This dashboard involves illuminating datasets, highlighting their environmental impact in line with French regulations."," \n ",
@@ -20,8 +22,7 @@ from modules.nav import Navbar
 
 def main():
     Navbar()
-
-    #st.title(f'🏠 Home Page')
+    
 
 
 if __name__ == '__main__':

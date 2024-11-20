@@ -1,27 +1,56 @@
 import streamlit as st
 import pandas as pd
 from modules.nav import Navbar
+from modules.datasets import load_process_data
+
+st.title(f'🔍 Metadata Overview')
 
 def main():
     Navbar()
-    st.title(f'🔍 Metadata Overview')
+    
+process_details = load_process_data()
 
+cat_lev1 = st.multiselect(
+    "Categorization 1",
+    process_details['Categorization (level 1)'].unique(),
+    [],
+)
 
-@st.cache_data
-def load_data():    
-    process_details = pd.read_excel('data/BI_2.02__02_Procedes_Details.xlsx', index_col=1)
-    process_details = process_details.T
-    process_details.columns = process_details.columns.str.strip()
-    process_details.set_index('UUID', inplace = True)
-    process_details = process_details.drop(process_details.columns[[5, 7, 8, 9, 10]],axis = 1)
-    process_details.drop(process_details.index[0], inplace = True)
-    process_details.rename(columns={process_details.columns[1]: "Flux Name" }, inplace = True)
-    process_details.drop(process_details.columns[process_details.nunique() == 1], axis=1, inplace=True)
-    process_details = process_details.drop(['Biomass ratio', 'Thermal solar ratio', 'Geothermal ratio', 'Tide ratio', 
-                                        'Other ratio comment', 'Transmission losses consider', 'Losses ratio',  'Mix comment'], axis=1)
-    return process_details
+pr_det_filt1 = process_details[process_details['Categorization (level 1)'].isin(cat_lev1)]
+cat_lev2 = st.multiselect(
+    "Categorization 2",
+    pr_det_filt1['Categorization (level 2)'].unique(),
+    [],
+)
 
-process_details = load_data()
+pr_det_filt2 = pr_det_filt1[process_details['Categorization (level 2)'].isin(cat_lev2)]
+cat_lev3 = st.multiselect(
+    "Categorization 3",
+    pr_det_filt2['Categorization (level 3)'].unique(),
+    [],
+)
+
+pr_det_filt3 = pr_det_filt2[process_details['Categorization (level 3)'].isin(cat_lev3)]
+#cat_lev4 = st.multiselect(
+#    "Categorization 4",
+#    pr_det_filt3['Categorization (level 4)'].unique(),
+#    [],
+#)
+
+#pr_det_filt4 = pr_det_filt3[process_details['Categorization (level 4)'].isin(cat_lev4)]
+fav = st.multiselect(
+    "Interesting Process",
+    pr_det_filt3['Flux Name'].unique(),
+    [],
+)
+
+# Filter the dataframe based on the widget input and reshape it.
+p_d_filtered = pr_det_filt3[process_details['Flux Name'].isin(fav)]
+
+#Possibilité de ne montrer que les lignes qui ont au moins une valeur ?
+
+st.dataframe(p_d_filtered.T,
+             use_container_width=True,)
 
 if __name__ == '__main__':
     main()
