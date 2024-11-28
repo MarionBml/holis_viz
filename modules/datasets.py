@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 
 @st.cache_data
 def load_process_data():    
@@ -103,7 +104,11 @@ def load_proc_imp_mpt():
 
 # On calcule la version normalisée et pondérée en mpt de proc_imp
     proc_imp = load_proc_imp()
-    proc_imp_mpt = proc_imp.apply(lambda x: x * dic[x.name] if x.name in dic else x) 
+
+    proc_imp_array = proc_imp.values  #obtenir les valeurs comme un array NumPy 
+    dic_array = np.array([dic.get(name, 1) for name in proc_imp.index]) # Créer un array NumPy à partir des valeurs de dic, gérer les valeurs manquantes 
+    result = proc_imp_array * dic_array 
+    proc_imp_mpt = pd.Series(result, index=proc_imp.index) # Reconstruire la Series pandas 
 
 # On ajoute une colonne avec le score total par process en mpt 
     proc_imp_mpt['score'] = proc_imp_mpt.sum(axis=1) 
