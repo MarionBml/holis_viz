@@ -17,6 +17,12 @@ ind = st.selectbox(
     placeholder="Select indicator...",
 )
 
+on = st.toggle("Comparison in mpt")
+
+#if on: # 
+    
+#else : # 
+
 if ind != None :
     col1, col2 = st.columns(2)
     col1.metric("Acidification", proc_imp.loc[ind][0], "")
