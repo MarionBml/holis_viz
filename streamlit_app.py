@@ -1,5 +1,6 @@
 import streamlit as st
 from modules.datasets import load_process_data
+from modules.nav import Navbar
 
 st.set_page_config(page_title='Home page')
 
@@ -12,16 +13,13 @@ st.write(
     "\n \n",
     "This dashboard features: \n",
         "* A metadata overview section.\n",
-        "* A dropdown for dataset selection.\n",
+        "* Several dropdowns for data selection.\n",
         "* Environmental impact visualisations.\n",
         "* Comparative rankings within categories."
 )
 
-from modules.nav import Navbar
-
 def main():
     Navbar()
-    
 
 if __name__ == '__main__':
     main()

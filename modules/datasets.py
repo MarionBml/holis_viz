@@ -78,6 +78,8 @@ def load_proc_imp():
 
     proc_imp = proc_imp.T
     proc_imp.columns = proc_imp.iloc[0]
+    #On remplace l'outlier des radiations ionisantes de l'islande en prenant la 2e plus grande valeur 
+    proc_imp.loc['Electricity grid mix, IS','b5c632be-def3-11e6-bf01-fe55135034f3'] = 120740
     proc_imp = proc_imp.iloc[1:]
     proc_imp.index = proc_imp.index.str.strip()
     return proc_imp

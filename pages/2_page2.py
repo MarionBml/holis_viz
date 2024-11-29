@@ -6,6 +6,7 @@ st.title(f'👁️ Environmental indicator explanations')
 
 def main():
     Navbar()
+    
 # Load data 
 cat_impacts = load_expl()
 
