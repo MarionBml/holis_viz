@@ -79,6 +79,8 @@ def load_proc_imp():
     proc_imp = proc_imp.T
     proc_imp.columns = proc_imp.iloc[0]
     proc_imp = proc_imp.iloc[1:]
+    #proc_imp['min'] = 
+    #proc_imp['max'] = 
     return proc_imp
 
 @st.cache_data

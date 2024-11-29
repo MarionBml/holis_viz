@@ -1,4 +1,5 @@
 import streamlit as st
+from modules.datasets import load_process_data
 
 st.set_page_config(page_title='Home page')
 
@@ -16,14 +17,11 @@ st.write(
         "* Comparative rankings within categories."
 )
 
-
-
 from modules.nav import Navbar
 
 def main():
     Navbar()
     
-
 
 if __name__ == '__main__':
     main()
