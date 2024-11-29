@@ -22,14 +22,12 @@ on = st.toggle("Comparison in npt")
 if on: # 
     data = load_proc_imp_npt()
     units = ["npt"] * 14
-    if ind != None :
-        st.bar_chart(data = data.loc[ind], horizontal=True)
-
+    
 else : 
     data = proc_imp
     units = data.iloc[2]
 
-if ind != None :
+if ind != None:
     with st.expander("See indicator values"):
 
         col1, col2 = st.columns(2)

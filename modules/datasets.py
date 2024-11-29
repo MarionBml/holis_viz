@@ -75,11 +75,11 @@ def load_proc_imp():
     
     proc_imp = proc_imp.iloc[:,:4].join(columns_sorted)
     proc_imp.drop(proc_imp.index[0], inplace = True)
-    proc_imp.columns = proc_imp.columns.str.strip()
 
     proc_imp = proc_imp.T
     proc_imp.columns = proc_imp.iloc[0]
     proc_imp = proc_imp.iloc[1:]
+    proc_imp.index = proc_imp.index.str.strip()
     return proc_imp
 
 # Créer vecteur des transformations en npt : facteurs d'aggrégation après normalisation et pondération
