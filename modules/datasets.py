@@ -111,5 +111,4 @@ def load_proc_imp_npt():
         proc_imp_npt[column] = proc_imp_npt[column] * dic[column] 
 
 # On ajoute une colonne avec le score total par process en mpt 
-    proc_imp_npt['score'] = proc_imp_npt.sum(axis=1) 
     return proc_imp_npt

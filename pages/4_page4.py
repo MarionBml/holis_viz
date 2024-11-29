@@ -19,9 +19,23 @@ ind = st.selectbox(
 
 on = st.toggle("Comparison in npt")
 
+
 if on: # 
     data = load_proc_imp_npt()
     units = ["npt"] * 14
+    
+    if ind != None :
+        stacked = st.toggle("Stacked")
+        st.text("This process has a total environmental score of " + "" + " npt.")
+        graph_data = data[data.index == ind]
+        graph_data.columns = proc_imp.iloc[0]
+
+        # On réorganise les valeurs par ordre décroissant
+
+        if stacked :
+            st.bar_chart(graph_data, x_label = 'Score in npt', horizontal=True, stack=None)
+        else :
+            st.bar_chart(graph_data, x_label = 'Score in npt', y_label = "Environmental indicators", horizontal=True, stack=False)
     
 else : 
     data = proc_imp
