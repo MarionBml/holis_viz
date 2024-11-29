@@ -79,50 +79,50 @@ else :
 
     if pro != None :
         gr0, gr1, gr2 = st.columns(3)
-        gr0_data = { 'Value': float(data[data.index == pro].iloc[:,0]) , 'Max': float(data.iloc[3:,0].max())}
+        gr0_data = { 'Value': float(data[data.index == pro].iloc[:,0]) , 'Max': data.iloc[3:,0].astype('float32').max()}
         gr0.bar_chart(gr0_data, x_label = data.columns[0], y_label=units[0], stack=False)
 
-        gr1_data = { 'Value': float(data[data.index == pro].iloc[:,1]) , 'Max': float(data.iloc[3:,1].max())}
+        gr1_data = { 'Value': float(data[data.index == pro].iloc[:,1]) , 'Max': data.iloc[3:,1].astype('float32').max()}
         gr1.bar_chart(gr1_data, x_label = data.columns[1], y_label=units[1], stack=False)
 
-        gr2_data = { 'Value': float(data[data.index == pro].iloc[:,2]) , 'Max': float(data.iloc[3:,2].max())}
+        gr2_data = { 'Value': float(data[data.index == pro].iloc[:,2]) , 'Max': data.iloc[3:,2].astype('float32').max()}
         gr2.bar_chart(gr2_data, x_label = data.columns[2], y_label=units[2], stack=False)
 
         gr3, gr4, gr5 = st.columns(3)
-        gr3_data = { 'Value': float(data[data.index == pro].iloc[:,3]) , 'Max': float(data.iloc[3:,3].max())}
+        gr3_data = { 'Value': float(data[data.index == pro].iloc[:,3]) , 'Max': data.iloc[3:,3].astype('float32').max()}
         gr3.bar_chart(gr3_data, x_label = data.columns[3], y_label=units[3], stack=False)
 
-        gr4_data = { 'Value': float(data[data.index == pro].iloc[:,4]) , 'Max': float(data.iloc[3:,4].max())}
+        gr4_data = { 'Value': float(data[data.index == pro].iloc[:,4]) , 'Max': data.iloc[3:,4].astype('float32').max()}
         gr4.bar_chart(gr4_data, x_label = data.columns[4], y_label=units[4], stack=False)
 
-        gr5_data = { 'Value': float(data[data.index == pro].iloc[:,5]) , 'Max': float(data.iloc[3:,5].max())}
+        gr5_data = { 'Value': float(data[data.index == pro].iloc[:,5]) , 'Max': data.iloc[3:,5].astype('float32').max()}
         gr5.bar_chart(gr5_data, x_label = data.columns[5], y_label=units[5], stack=False)
     
         gr6, gr7, gr8 = st.columns(3)
-        gr6_data = { 'Value': float(data[data.index == pro].iloc[:,6]) , 'Max': float(data.iloc[3:,6].max())}
+        gr6_data = { 'Value': float(data[data.index == pro].iloc[:,6]) , 'Max': data.iloc[3:,6].astype('float32').max()}
         gr6.bar_chart(gr6_data, x_label = data.columns[6], y_label=units[6], stack=False)
 
-        gr7_data = { 'Value': float(data[data.index == pro].iloc[:,7]) , 'Max': float(data.iloc[3:,7].max())}
+        gr7_data = { 'Value': float(data[data.index == pro].iloc[:,7]) , 'Max': data.iloc[3:,7].astype('float32').max()}
         gr7.bar_chart(gr7_data, x_label = data.columns[7], y_label=units[7], stack=False)
 
-        gr8_data = { 'Value': float(data[data.index == pro].iloc[:,8]) , 'Max': float(data.iloc[3:,8].max())}
+        gr8_data = { 'Value': float(data[data.index == pro].iloc[:,8]) , 'Max': data.iloc[3:,8].astype('float32').max()}
         gr8.bar_chart(gr8_data, x_label = data.columns[8], y_label=units[8], stack=False)
 
         gr9, gr10, gr11 = st.columns(3)
-        gr9_data = { 'Value': float(data[data.index == pro].iloc[:,9]) , 'Max': float(data.iloc[3:,9].max())}
+        gr9_data = { 'Value': float(data[data.index == pro].iloc[:,9]) , 'Max': data.iloc[3:,9].astype('float32').max()}
         gr9.bar_chart(gr9_data, x_label = data.columns[9], y_label=units[9], stack=False)
 
-        gr10_data = { 'Value': float(data[data.index == pro].iloc[:,10]) , 'Max': float(data.iloc[3:,10].max())}
+        gr10_data = { 'Value': float(data[data.index == pro].iloc[:,10]) , 'Max': data.iloc[3:,10].astype('float32').max()}
         gr10.bar_chart(gr10_data, x_label = data.columns[10], y_label=units[10], stack=False)
 
-        gr11_data = { 'Value': float(data[data.index == pro].iloc[:,11]) , 'Max': float(data.iloc[3:,11].max())}
+        gr11_data = { 'Value': float(data[data.index == pro].iloc[:,11]) , 'Max': data.iloc[3:,11].astype('float32').max()}
         gr11.bar_chart(gr11_data, x_label = data.columns[11], y_label=units[11], stack=False)
 
         gr12, gr13, gr14 = st.columns(3)
-        gr12_data = { 'Value': float(data[data.index == pro].iloc[:,12]) , 'Max': float(data.iloc[3:,12].max())}
+        gr12_data = { 'Value': float(data[data.index == pro].iloc[:,12]) , 'Max': data.iloc[3:,12].astype('float32').max()}
         gr12.bar_chart(gr12_data, x_label = data.columns[12], y_label=units[12], stack=False)
 
-        gr13_data = { 'Value': float(data[data.index == pro].iloc[:,13]) , 'Max': float(data.iloc[3:,13].max())}
+        gr13_data = { 'Value': float(data[data.index == pro].iloc[:,13]) , 'Max': data.iloc[3:,13].astype('float32').max()}
         gr13.bar_chart(gr13_data, x_label = data.columns[13], y_label=units[13], stack=False)
 
 
