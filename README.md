@@ -2,7 +2,7 @@
 
 A simple Streamlit app using the Base Impacts subset from the Empreinte database
 
-[![Open in Streamlit]](https://holis-viz.streamlit.app/)
+![Open in Streamlit](https://holis-viz.streamlit.app/)
 
 ### How to run it on your own machine
 
