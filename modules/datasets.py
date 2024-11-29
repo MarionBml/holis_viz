@@ -75,19 +75,16 @@ def load_proc_imp():
     
     proc_imp = proc_imp.iloc[:,:4].join(columns_sorted)
     proc_imp.drop(proc_imp.index[0], inplace = True)
+    proc_imp.columns = proc_imp.columns.str.strip()
 
     proc_imp = proc_imp.T
     proc_imp.columns = proc_imp.iloc[0]
     proc_imp = proc_imp.iloc[1:]
-    #proc_imp['min'] = 
-    #proc_imp['max'] = 
     return proc_imp
 
-@st.cache_data
 # Créer vecteur des transformations en npt : facteurs d'aggrégation après normalisation et pondération
 # https://energieplus-lesite.be/theories/enveloppe9/totem/totem-performance-environnementale-score-agrege-ou-detaille/
-def load_proc_imp_npt():
-    dic = {'b5c611c6-def3-11e6-bf01-fe55135034f3' : 1100000,
+dic = {'b5c611c6-def3-11e6-bf01-fe55135034f3' : 1100000,
         'b5c629d6-def3-11e6-bf01-fe55135034f3' : 1176000000,
         'b2ad6d9a-c78d-11e6-9d9d-cec0c932ce01' : 26000,
         '0db6bc32-3f72-48b9-bdb3-617849c2752f' : 26000,
@@ -103,9 +100,15 @@ def load_proc_imp_npt():
         'b2ad6890-c78d-11e6-9d9d-cec0c932ce01' : 97
         }
 
+@st.cache_data
+
+def load_proc_imp_npt():
+    process_details = load_process_data()  
+
 # On calcule la version normalisée et pondérée en npt de proc_imp
-    proc_imp = load_proc_imp()
-    proc_imp_npt = proc_imp.apply(lambda x:x *dic[x.name] if x.name in dic else x)
+    proc_imp_npt = load_proc_imp().iloc[3:].astype('float32')
+    for column in proc_imp_npt.columns: 
+        proc_imp_npt[column] = proc_imp_npt[column] * dic[column] 
 
 # On ajoute une colonne avec le score total par process en mpt 
     proc_imp_npt['score'] = proc_imp_npt.sum(axis=1) 

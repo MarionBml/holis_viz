@@ -10,5 +10,4 @@ def Navbar():
         st.page_link('pages/3_page3.py', label='Metadata Overview', icon='🔍')
         st.page_link('pages/4_page4.py', label='Impact visualisations', icon='📈')
         st.page_link('pages/5_page5.py', label='Comparative rankings', icon='⚖️')
-        
-        
+               
