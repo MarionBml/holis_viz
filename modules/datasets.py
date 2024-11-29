@@ -82,34 +82,29 @@ def load_proc_imp():
     return proc_imp
 
 @st.cache_data
-# Créer vecteur des transformations en mpt : facteurs d'aggrégation après normalisation et pondération
+# Créer vecteur des transformations en npt : facteurs d'aggrégation après normalisation et pondération
 # https://energieplus-lesite.be/theories/enveloppe9/totem/totem-performance-environnementale-score-agrege-ou-detaille/
-def load_proc_imp_mpt():
-    dic = {'b5c611c6-def3-11e6-bf01-fe55135034f3' : 1.1,
-        'b5c629d6-def3-11e6-bf01-fe55135034f3' : 1176,
-        'b2ad6d9a-c78d-11e6-9d9d-cec0c932ce01' : 0.026,
-        '0db6bc32-3f72-48b9-bdb3-617849c2752f' : 0.026,
-        '2105d3ac-c7c7-4c80-b202-7328c14c66e8' : 0.026,
-        'b53ec18f-7377-4ad3-86eb-cc3f4f276b2b' : 17,
-        'b5c619fa-def3-11e6-bf01-fe55135034f3' : 1.5, 
-        'b5c614d2-def3-11e6-bf01-fe55135034f3' : 0.21,
-        'b5c610fe-def3-11e6-bf01-fe55135034f3' : 1.2,
-        'b5c602c6-def3-11e6-bf01-fe55135034f3' : 0.012,
-        'b5c632be-def3-11e6-bf01-fe55135034f3' : 0.00045,
-        'b2ad6110-c78d-11e6-9d9d-cec0c932ce01' : 0.0013,
-        'b2ad6494-c78d-11e6-9d9d-cec0c932ce01' : 1186,
-        'b2ad6890-c78d-11e6-9d9d-cec0c932ce01' : 0.000097
+def load_proc_imp_npt():
+    dic = {'b5c611c6-def3-11e6-bf01-fe55135034f3' : 1100000,
+        'b5c629d6-def3-11e6-bf01-fe55135034f3' : 1176000000,
+        'b2ad6d9a-c78d-11e6-9d9d-cec0c932ce01' : 26000,
+        '0db6bc32-3f72-48b9-bdb3-617849c2752f' : 26000,
+        '2105d3ac-c7c7-4c80-b202-7328c14c66e8' : 26000,
+        'b53ec18f-7377-4ad3-86eb-cc3f4f276b2b' : 17000000,
+        'b5c619fa-def3-11e6-bf01-fe55135034f3' : 1500000, 
+        'b5c614d2-def3-11e6-bf01-fe55135034f3' : 210000,
+        'b5c610fe-def3-11e6-bf01-fe55135034f3' : 1200000,
+        'b5c602c6-def3-11e6-bf01-fe55135034f3' : 12000,
+        'b5c632be-def3-11e6-bf01-fe55135034f3' : 450,
+        'b2ad6110-c78d-11e6-9d9d-cec0c932ce01' : 1300,
+        'b2ad6494-c78d-11e6-9d9d-cec0c932ce01' : 1186000000,
+        'b2ad6890-c78d-11e6-9d9d-cec0c932ce01' : 97
         }
 
-
-# On calcule la version normalisée et pondérée en mpt de proc_imp
+# On calcule la version normalisée et pondérée en npt de proc_imp
     proc_imp = load_proc_imp()
-
-    proc_imp_array = proc_imp.values  #obtenir les valeurs comme un array NumPy 
-    dic_array = np.array([dic.get(name, 1) for name in proc_imp.index]) # Créer un array NumPy à partir des valeurs de dic, gérer les valeurs manquantes 
-    result = proc_imp_array * dic_array 
-    proc_imp_mpt = pd.Series(result, index=proc_imp.index) # Reconstruire la Series pandas 
+    proc_imp_npt = proc_imp.apply(lambda x:x *dic[x.name] if x.name in dic else x)
 
 # On ajoute une colonne avec le score total par process en mpt 
-    proc_imp_mpt['score'] = proc_imp_mpt.sum(axis=1) 
-    return proc_imp_mpt
+    proc_imp_npt['score'] = proc_imp_npt.sum(axis=1) 
+    return proc_imp_npt
